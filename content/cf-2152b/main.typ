@@ -1,8 +1,16 @@
+// ---
+// title: Catching the Krug
+// source: Codeforces 2152B
+// difficulty: 1300
+// tags: games, math, proof
+// keywords: krug, wall, fence
+// ---
+
 #set text(region: "GB", font: "New Computer Modern", size: 11pt)
 
 = Catching the Krug
 
-#text(red)[_Sometimes you gotta keep deducing... and deducing_]
+#text(red)[_One observation, all the implications_]
 
 Problem link: #text(blue)[#link("https://codeforces.com/contest/2152/problem/B")]
 
@@ -24,7 +32,7 @@ Let's define the following term:
 
 Now, which fence should the Krug run towards?
 Since the Krug stops making further progress along an axis if he reaches a normal (perpendicular) fence, his ideal scenario is hugging both fences which happens at a corner.
-In this best possible case (or wost from the Doran's perspective), the answer is
+In this best possible case (or worst from the Doran's perspective), the answer is
 $
 max ("Doran's distance to vertical fence", "Doran's distance to horizontal fence")
 $

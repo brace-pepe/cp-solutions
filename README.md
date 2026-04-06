@@ -55,7 +55,7 @@ All fields are **optional**, but the more you fill in, the better the search.
 Any structure works — the crawler finds all `.typ` files recursively:
 
 ```
-solutions/
+content/
   codeforces-380C/
     solution.typ   ← frontmatter here
     solution.pdf

@@ -1,3 +1,11 @@
+// ---
+// title: Equal Digits
+// source: QOJ 7829
+// difficulty: 1500
+// tags: dp, combinatorics
+// keywords: dp optimization, dp trick
+// ---
+
 #set text(region: "GB", font: "New Computer Modern", size: 11pt)
 
 = Equal Digits
