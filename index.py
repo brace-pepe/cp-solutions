@@ -57,6 +57,15 @@ GREEN  = "\033[32m"
 RED    = "\033[31m"
 BLUE   = "\033[34m"
 MAGENTA= "\033[35m"
+WHITE  = "\033[37m"
+
+BCYAN   = "\033[96m"
+BYELLOW = "\033[93m"
+BGREEN  = "\033[92m"
+BRED    = "\033[91m"
+BBLUE   = "\033[94m"
+BMAGENTA= "\033[95m"
+BWHITE  = "\033[97m"
 
 
 def c(color, text):
@@ -66,17 +75,19 @@ def c(color, text):
 # ── Difficulty colouring ───────────────────────────────────────────────────────
 
 def diff_color(d):
-    if d is None:
-        return c(DIM, "  ?  ")
-    if d < 1200:
-        return c(GREEN,   f"{d:4d}")
+    if d is None or d < 1200:
+        return WHITE
+    if d < 1400:
+        return BGREEN
     if d < 1600:
-        return c(CYAN,    f"{d:4d}")
-    if d < 2000:
-        return c(BLUE,    f"{d:4d}")
+        return BCYAN
+    if d < 1900:
+        return BBLUE
+    if d < 2100:
+        return BMAGENTA
     if d < 2400:
-        return c(YELLOW,  f"{d:4d}")
-    return c(RED,         f"{d:4d}")
+        return BYELLOW
+    return BRED
 
 
 # ── Filtering logic ────────────────────────────────────────────────────────────
@@ -179,8 +190,8 @@ def search(problems: list[dict], query: str) -> list[dict]:
 
 def fmt_tags(tags):
     if not tags:
-        return c(DIM, "(no tags)")
-    return " ".join(c(MAGENTA, f"#{t}") for t in tags)
+        return "no tags"
+    return " ".join(f"#{t}" for t in tags)
 
 
 def print_results(results: list[dict]):
@@ -190,15 +201,16 @@ def print_results(results: list[dict]):
     print()
     for i, p in enumerate(results, 1):
         has_pdf = "📄" if p["pdf_path"] else c(DIM, "  ")
-        title   = c(BOLD, p["title"])
-        source  = c(CYAN, p["source"]) if p["source"] else c(DIM, "unknown source")
-        diff    = diff_color(p["difficulty"])
-        tags    = fmt_tags(p["tags"])
+        color   = diff_color(p["difficulty"])
+        title   = c(BOLD, c(color, p["title"]))
+        source  = c(color, p["source"]) if p["source"] else c(DIM, "unknown source")
+        diff    = c(color, p["difficulty"])
+        tags    = c(DIM, c(color, fmt_tags(p["tags"])))
         print(f"  {c(YELLOW, f'[{i}]')} {has_pdf} {title}")
-        print(f"       {source}  ·  diff {diff}  ·  {tags}")
-        if p["keywords"]:
-            kws = c(DIM, ", ".join(p["keywords"]))
-            print(f"       {kws}")
+        print(f"       {source}  ·  {diff}  ·  {tags}")
+        # if p["keywords"]:
+        #     kws = c(DIM, ", ".join(p["keywords"]))
+        #     print(f"       {kws}")
         print()
 
 
@@ -260,7 +272,7 @@ def main():
 
     while True:
         try:
-            raw = input(c(CYAN, "search> ")).strip()
+            raw = input(c(CYAN, "> ")).strip()
         except (EOFError, KeyboardInterrupt):
             print()
             break

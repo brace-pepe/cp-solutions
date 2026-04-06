@@ -3,7 +3,7 @@
 // source: Codeforces 2152B
 // difficulty: 1300
 // tags: games, math, proof
-// keywords: krug, wall, fence
+// keywords: all, krug, one idea
 // ---
 
 #set text(region: "GB", font: "New Computer Modern", size: 11pt)
