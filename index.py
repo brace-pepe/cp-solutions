@@ -237,13 +237,19 @@ def print_help():
 
 # ── File opener ────────────────────────────────────────────────────────────────
 
+def is_wsl():
+    return "microsoft" in open("/proc/version").read().lower()
+
 def open_file(path: str):
     system = platform.system()
     try:
         if system == "Darwin":
             subprocess.Popen(["open", path])
         elif system == "Linux":
-            subprocess.Popen(["xdg-open", path])
+            if is_wsl():
+                subprocess.Popen(["wslview", path])
+            else:
+                subprocess.Popen(["xdg-open", path])
         else:
             os.startfile(path)
         print(c(GREEN, f"  Opened: {path}"))
