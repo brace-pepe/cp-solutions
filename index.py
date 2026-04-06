@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/home/navid/CP-solutions/soln-hub-env/bin/python
 """
 index.py — Interactive CLI hub for your competitive programming solutions.
 

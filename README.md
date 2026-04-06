@@ -1,24 +1,28 @@
-# CP Solutions Hub
+# CP Solutions
 
-An interactive CLI to search and open your competitive programming solutions.
+This repository contains solutions to some CP problems I've solved.
+
+There is also an interactive CLI to search and open the solutions written in Typst.
 
 ## Setup
 
 1. **Install the one dependency:**
    ```bash
-   pip install pyyaml
+   pip install PyYAML
    ```
+   Sometimes you have to create a virtual environment.
 
-2. **Place `parse.py` and `index.py` in the same directory** (anywhere you like).
+2. **Make sure `parse.py` and `index.py` are in the same directory**.
 
-3. **Add frontmatter to your `.typ` files** (see spec below).
+3. **Add frontmatter to `.typ` files** (see spec below).
 
 4. **Run:**
    ```bash
    python index.py /path/to/your/solutions
-   # or if solutions/ is in the current dir:
+   # or if content/ is in the current dir:
    python index.py
    ```
+   If `parse.py` is not found, make sure `index.py` and `parse.py` are in the same directory and the virtual environment containing PyYAML is activated.
 
 ---
 
